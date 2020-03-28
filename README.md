@@ -40,4 +40,21 @@ ES6 generator functions hava a magic keyword called `yield` that enables itself 
 
 Another amazing feature of generator functions is that beyond pausing and reruning the function, we can also get and send messages as it progresses.
 
+Generator functions are defined like below
+```
+function* count() {
+}
+```
+or
+```
+function *count() {
+}
+```
+and whenever we'd like to pause the function and send a message, we use ``yield`` keyword as below
+
+```
+function* count() {
+    yield "counting..."
+}
+```
 
