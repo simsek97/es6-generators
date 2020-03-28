@@ -185,7 +185,6 @@ console.log( "First call:", it.next() );
 console.log( "Second call:", it.next(3) );
 console.log( "Third call:", it.next(1) );
 
-// Prints out these
 // First call: {value: "Enter a number!", done: false}
 // You entered 3 and you will get 3 + 5 = 8
 // Second call: {value: 8, done: false}
@@ -209,7 +208,6 @@ while (!it.next(i * 10).done) {
     console.log(i);
 }
 
-// Print out these
 // 1
 // 1
 // 2
