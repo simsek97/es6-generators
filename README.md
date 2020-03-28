@@ -123,7 +123,9 @@ console.log( it.next() );
 {value: undefined, done: true}
 ```
 
-So, each time we call ``next()`` we are getting the next ``yield`` and one more thing interesting which is ``done`` is ``true`` when we call ``next()`` after all ``yield``s. This means we are getting messages from the function.
+So, each time we call ``next()`` we are getting the next ``yield`` and one more interesting thing is that ``done`` is ``true`` when we call ``next()`` after all ``yield``s. 
+
+These all mean we are able to get messages from the function.
 
 What if we want to send messages?
 
@@ -146,22 +148,13 @@ function* count() {
 
 var it = count();
 
-console.log("First call");
-// First call
-
 console.log( it.next() );
 // {value: "Send me a number", done: false}
-
-console.log("Second call");
-// Second call
 
 console.log( it.next(3) );
 // You sent me 3
 // I will send you back 8
 // {value: 8, done: false}
-
-console.log("Third call");
-// Third call
 
 console.log( it.next(1) );
 // You sent me 1
@@ -171,4 +164,60 @@ console.log( it.next(1) );
 console.log( it.next() );
 // I am done. Returning 2
 // {value: 2, done: true}
+```
+
+I will end with another couple of examples.
+
+```javascript
+function* count() {
+    var a = yield "Enter a number!";
+    console.log("You entered ", a, " and you will get", a, " + 5 = ", (a + 5));
+
+    var b = yield a + 5;
+    var c = a * 3 + b;
+    console.log("You sent me", b, " and you will get (", a, " * 3) + ", b, "=", c);
+
+    return c;
+}
+
+var it = count();
+console.log( "First call:", it.next() );
+console.log( "Second call:", it.next(3) );
+console.log( "Third call:", it.next(1) );
+
+// Prints out these
+// First call: {value: "Enter a number!", done: false}
+// You entered 3 and you will get 3 + 5 = 8
+// Second call: {value: 8, done: false}
+// You sent me 1 and you will get (3 * 3) + 1 = 10
+// Third call: {value: 10, done: true}
+```
+
+```javascript
+function *count() {
+    console.log(yield);
+    console.log(yield);
+    console.log(yield);
+    console.log(yield);
+    console.log(yield);
+}
+
+const it = count();
+let i = 0;
+while (!it.next(i * 10).done) {
+    i++;
+    console.log(i);
+}
+
+// Print out these
+// 1
+// 1
+// 2
+// 4
+// 3
+// 9
+// 4
+// 16
+// 5
+// 25
 ```
