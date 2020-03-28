@@ -41,20 +41,56 @@ ES6 generator functions hava a magic keyword called `yield` that enables itself 
 Another amazing feature of generator functions is that beyond pausing and reruning the function, we can also get and send messages as it progresses.
 
 Generator functions are defined like below
-```
+
+```javascript
 function* count() {
 }
 ```
+
 or
-```
+
+```javascript
 function *count() {
 }
 ```
 and whenever we'd like to pause the function and send a message, we use ``yield`` keyword as below
 
-```
+```javascript
 function* count() {
     yield "counting..."
 }
 ```
 
+In practice, this will do nothing. In order to use generator functions, we need a method called iterator.
+
+```javascript
+var it = count();
+```
+is an iterator. And when we log it we will see something interesting
+
+```javascript
+console.log(it);
+
+// Prints out
+// {next: ƒ, throw: ƒ, return: ƒ}
+```
+
+Quite interesting? Huh! This is an object which has 3 functions. Let's call these functions.
+
+```javascript
+var it = count();
+console.log(it.next());
+// {value: "counting", done: false}
+```
+
+```javascript
+var it = count();
+console.log(it.throw());
+// {value: "counting", done: false}
+```
+
+```javascript
+var it = count();
+console.log(it.return());
+// {value: undefined, done: true}
+```
