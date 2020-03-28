@@ -79,18 +79,96 @@ Quite interesting? Huh! This is an object which has 3 functions. Let's call thes
 
 ```javascript
 var it = count();
-console.log(it.next());
+console.log( it.next() );
+
 // {value: "counting", done: false}
 ```
 
 ```javascript
 var it = count();
-console.log(it.throw());
+console.log( it.throw() );
+
 // {value: "counting", done: false}
 ```
 
 ```javascript
 var it = count();
-console.log(it.return());
+console.log( it.return() );
+
 // {value: undefined, done: true}
+```
+
+The most exciting part here is that we are getting an object with ``value: counting`` which is the ``yield`` part of our function.
+
+What happends if we have more yields. Have a look.
+
+```javascript
+function* count() {
+    yield 1
+    yield 2
+    yield 3
+}
+
+var it = count();
+console.log( it.next() );
+// {value: 1, done: false}
+
+console.log( it.next() );
+// {value: 2, done: false}
+
+console.log( it.next() );
+// {value: 3, done: false}
+
+console.log( it.next() );
+{value: undefined, done: true}
+```
+
+So, each time we call ``next()`` we are getting the next ``yield`` and one more thing interesting which is ``done`` is ``true`` when we call ``next()`` after all ``yield``s. This means we are getting messages from the function.
+
+What if we want to send messages?
+
+```javascript
+function* count() {
+    a = yield "Send me a number";
+    console.log("You sent me ", a);
+    
+    console.log("I will send you back ", (a + 5));
+    
+    b = yield a + 5;
+    console.log("You sent me ", b);
+    
+    console.log("I will send you back 3");
+    yield 3
+
+    console.log("I am done. Returning ", b + 1);
+    return b + 1;
+}
+
+var it = count();
+
+console.log("First call");
+// First call
+
+console.log( it.next() );
+// {value: "Send me a number", done: false}
+
+console.log("Second call");
+// Second call
+
+console.log( it.next(3) );
+// You sent me 3
+// I will send you back 8
+// {value: 8, done: false}
+
+console.log("Third call");
+// Third call
+
+console.log( it.next(1) );
+// You sent me 1
+// I will send you back 3
+// {value: 3, done: false}
+
+console.log( it.next() );
+// I am done. Returning 2
+// {value: 2, done: true}
 ```
