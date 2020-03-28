@@ -34,8 +34,10 @@ Why is that not possible for hello to interrupt count? The answer is simple. Bec
 
 Generators are coming to the stage at this point. We can have functions with such abilities as we can run, pause, and run again later.
 
+# Generator Functions
+
 ES6 generator functions hava a magic keyword called `yield` that enables itself to pause itself which is amazing.
 
 Another amazing feature of generator functions is that beyond pausing and reruning the function, we can also get and send messages as it progresses.
 
-# Generator Functions
+
