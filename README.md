@@ -75,7 +75,7 @@ console.log(it);
 // {next: ƒ, throw: ƒ, return: ƒ}
 ```
 
-Quite interesting? Huh! This is an object which has 3 functions. Let's call these functions.
+Quite interesting? Huh! This is an object which has 3 methods. Let's call these methods.
 
 ```javascript
 var it = count();
