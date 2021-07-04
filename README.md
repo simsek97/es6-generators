@@ -2,13 +2,13 @@
 
 One of the most interesting features that came out with ES6 is generators. I will have a look at what generators are and how to use them.
 
-In order to understand how they are differnet than normal functions let us have a look at this simple example.
+In order to understand how they are different than normal functions let us have a look at this simple example.
 
 ```javascript
 function hello() {
   setTimeout(() => {
     console.log('hello');
-  }, 3); // 3 miliseconds
+  }, 3); // 3 milliseconds
 }
 
 function count() {
@@ -36,9 +36,9 @@ Generators are coming to the stage at this point. We can have functions with suc
 
 # Generator Functions
 
-ES6 generator functions hava a magic keyword called `yield` that enables itself to pause itself which is amazing.
+ES6 generator functions have a magic keyword called `yield` that enables itself to pause itself which is amazing.
 
-Another amazing feature of generator functions is that beyond pausing and reruning the function, we can also get and send messages as it progresses.
+Another amazing feature of generator functions is that beyond pausing and rerunning the function, we can also get and send messages as it progresses.
 
 Generator functions are defined like below
 
